@@ -25,4 +25,10 @@ class SplashControlller extends GetxController
       GlobalVarible.initialLoading.value = false;
     });
   }
+
+  @override
+  void onClose() {
+    animationController.dispose();
+    super.onClose();
+  }
 }

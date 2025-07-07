@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 
 import 'package:get/get.dart';
+import 'package:mitra_jaya/app/modules/home/services/notification_service.dart';
 
 import 'app/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDownloader.initialize(debug: false, ignoreSsl: true);
+  await NotificationService.initialize();
 
   runApp(
     GetMaterialApp(

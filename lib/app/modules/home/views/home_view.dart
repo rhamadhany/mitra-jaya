@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'package:get/get.dart';
+import 'package:mitra_jaya/app/modules/home/download/controllers/download_controller.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -43,7 +44,8 @@ class HomeView extends GetView<HomeController> {
                         controller.webviewController = webController;
                       },
                       onDownloadStartRequest: (webController, webUri) {
-                        controller.downloadApk(webUri.url);
+                        // controller.downloadApk(webUri.url);
+                        Get.put(DownloadController(url: webUri.url));
                       },
                       onReceivedError: (webController, webUri, error) {
                         final scheme = webUri.url.scheme;
@@ -73,6 +75,28 @@ class HomeView extends GetView<HomeController> {
                     child: LinearProgressIndicator(color: Colors.blue),
                   ),
                 ),
+
+              // if (controller.isDownloading.value)
+              // Positioned(
+              //   bottom: Get.width * 0.1,
+              //   right: Get.width * 0.1,
+              //   child: Container(
+              //     padding: EdgeInsets.all(12),
+              //     decoration: BoxDecoration(
+              //       shape: BoxShape.circle,
+              //       color: Colors.blue,
+              //     ),
+              //     child: Obx(
+              //       () => Text(
+              //         controller.downloadProgress.value.toStringAsFixed(0),
+              //         style: TextStyle(
+              //           fontWeight: FontWeight.bold,
+              //           color: Colors.white,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           );
         }),

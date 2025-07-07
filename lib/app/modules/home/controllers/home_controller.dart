@@ -1,4 +1,4 @@
-import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,20 +8,31 @@ class HomeController extends GetxController {
   final isLoading = true.obs;
   final isError = false.obs;
   final showDialog = false.obs;
+  final isDownloading = false.obs;
+  final downloadProgress = 0.0.obs;
   void launchIntent(Uri url) {
     try {
       launchUrl(url);
     } catch (_) {}
   }
+}
 
-  void downloadApk(Uri url) async {
-    final output = '/storage/emulated/0/mitra-jaya.apk';
-    await FlutterDownloader.enqueue(
-      url: url.toString(),
-      headers: {}, // optional: header send with url (auth token etc)
-      savedDir: output,
-      showNotification: true,
-      openFileFromNotification: true,
-    );
-  }
+void snackError({String? title, required String message}) {
+  Get.snackbar(
+    title ?? 'Gagal',
+    message,
+    snackPosition: SnackPosition.BOTTOM,
+    colorText: Colors.white,
+    backgroundColor: Colors.red,
+  );
+}
+
+void snackSuceed({String? title, required String message}) {
+  Get.snackbar(
+    title ?? 'Berhasil',
+    message,
+    snackPosition: SnackPosition.BOTTOM,
+    colorText: Colors.white,
+    backgroundColor: Colors.blue,
+  );
 }
