@@ -7,6 +7,7 @@ import 'package:mitra_jaya/app/modules/home/services/notification_service.dart';
 
 class DownloadController extends GetxController {
   final nameController = TextEditingController(text: 'Mitra-Jaya.apk');
+  final outputName = "".obs;
   final Uri url;
   final dio = Dio();
   DownloadController({required this.url});
@@ -14,11 +15,15 @@ class DownloadController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    nameController.addListener(() {
+      outputName.value = nameController.text;
+    });
     showDialog();
   }
 
   @override
   void onClose() {
+    nameController.removeListener(() {});
     nameController.dispose();
     super.onClose();
   }

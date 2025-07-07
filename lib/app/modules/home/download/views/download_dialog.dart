@@ -23,9 +23,11 @@ class DownloadDialog extends GetView<DownloadController> {
             keyboardType: TextInputType.text,
           ),
           SizedBox(height: 10),
-          Text(
-            '* Aplikasi akan disimpan di /storage/emulated/0/${controller.nameController.text}',
-            style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
+          Obx(
+            () => Text(
+              '* Aplikasi akan disimpan di /storage/emulated/0/${controller.outputName.value}',
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
+            ),
           ),
         ],
       ),
